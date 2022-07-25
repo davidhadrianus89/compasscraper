@@ -10,7 +10,7 @@ class TokopediaSpider(Spider):
 
     custom_settings = {
         'FEED_FORMAT': 'csv',
-        'FEED_URI': 'FileCrawled/Tokopedia/tokopediasukanda.csv'.format(int(datetime.now().strftime('%Y%m%d')))
+        'FEED_URI': 'FileCrawled/Tokopedia/tokopediasukanda_{}.csv'.format(int(datetime.now().strftime('%Y%m%d')))
     }
 
     def start_requests(self):

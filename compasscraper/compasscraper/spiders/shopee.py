@@ -13,7 +13,7 @@ class ShopeeSpider(CrawlSpider):
 
     custom_settings = {
         'FEED_FORMAT': 'csv',
-        'FEED_URI': 'FileCrawled/Shopee/shopeesukanda.csv'.format(int(datetime.now().strftime('%Y%m%d')))
+        'FEED_URI': 'FileCrawled/Shopee/shopeesukanda_{}.csv'.format(int(datetime.now().strftime('%Y%m%d')))
     }
 
     def start_requests(self):
