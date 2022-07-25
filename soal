@@ -1,0 +1,15 @@
+Sebagai Senior Data Engineer,
+kamu  diberi 20 file csv yang masing-masing berisi 50 juta baris,
+kamu diberi tugas untuk membuat aplikasi yang bertujuan untuk memvalidasi serta menginput semua baris tersebut ke dalam database dalam waktu secepat mungkin.
+Buatlah skema architect untuk solusi tersebut. ( asumsi: insert speed database per detik terbatas)
+
+
+Buatlah aplikasi untuk melakukan crawling produk2
+https://www.orami.co.id/  atau crawling toko
+https://www.tokopedia.com/sukandahome
+atau crawling produk2 dari toko https://shopee.co.id/sukandahome:
+Output aplikasi berupa csv file
+Sertakan code dan cara eksekusinya. 
+Dianjurkan menggunakan crawler framework seperti gocolly (http://go-colly.org/) atau scrapy (https://scrapy.org/)
+Push Source code - ke git personal yang dapat diakses public 
+
