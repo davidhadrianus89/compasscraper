@@ -4,6 +4,10 @@ import pandas as pd
 from scrapy_selenium import SeleniumRequest
 from scrapy import Spider
 
+from compasscraper.spiders.utils import list_to_dict
+
+from compasscraper.items import CompasscraperItem
+
 
 def get_product_url():
     data = pd.read_csv("/home/david/Desktop/compasscraper/url_product.csv")
@@ -20,13 +24,12 @@ urls = get_product_url()
 class OramiSpider(Spider):
     name = 'orami'
     url = urls
-    #start_urls = url
-    start_urls = ["https://www.orami.co.id/shopping/product/buy-2-slim-fit-meal-replacement-french-vanila-get-1-tas-gym", ""]
+    start_urls = url
 
-    # custom_settings = {
-    #     'FEED_FORMAT': 'csv',
-    #     'FEED_URI': 'FileCrawled/Orami/orami.csv'.format(int(datetime.now().strftime('%Y%m%d')))
-    # }
+    custom_settings = {
+        'FEED_FORMAT': 'csv',
+        'FEED_URI': 'FileCrawled/Orami/orami_{}.csv'.format(int(datetime.now().strftime('%Y%m%d')))
+    }
 
     def start_requests(self):
         for url in self.start_urls:
@@ -36,6 +39,7 @@ class OramiSpider(Spider):
                 wait_time=3)
 
     def parse(self, response):
+        item = CompasscraperItem()
         harga = response.css(
             'h3[class="jsx-1894068073 text-coral text is-size-h5 is-font-modern-era-bold prod-detail-price m-0 "]  ::text').extract()[1].strip()
         nama = response.css(
@@ -48,7 +52,17 @@ class OramiSpider(Spider):
         seller = response.css(
             'div[class="jsx-3646570757 text-charcoal-700 text is-size-small is-weight-bold "]  ::text').extract()[
             0].strip()
-        brand = response.css(
+        spesifikasi = response.css(
             'tbody[class="prod-detail-spesification"]  ::text').extract()
-        print("NAMA", nama, harga, stock, seller, brand)
+        brand = list_to_dict(spesifikasi).get('Brand')
+        kategori = list_to_dict(spesifikasi).get('Kategori')
+
+        item['nama'] = nama
+        item['brand'] = brand
+        item['kategori'] = kategori
+        item['penjual'] = seller
+        item['harga'] = harga
+        item['stock'] = stock
+        item['url'] = response.url.strip()
+        yield item
 
