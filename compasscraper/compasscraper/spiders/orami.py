@@ -10,7 +10,7 @@ from compasscraper.items import CompasscraperItem
 
 
 def get_product_url():
-    data = pd.read_csv("/home/david/Desktop/compasscraper/url_product.csv")
+    data = pd.read_csv("/home/david/Desktop/compasscraper/url_product.csv")  # change this path to url product csv file path
     urls = data['urls']
     urls_ = []
     for row in urls:
