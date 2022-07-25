@@ -1,11 +1,11 @@
 from shutil import which
 
 SELENIUM_DRIVER_NAME = 'chrome'
-SELENIUM_DRIVER_EXECUTABLE_PATH = which('/home/david/Desktop/chromedriver_linux64/chromedriver')
+SELENIUM_DRIVER_EXECUTABLE_PATH = which('/home/david/Desktop/chromedriver_linux64/chromedriver')  # change this path in your system
 
 SELENIUM_DRIVER_ARGUMENTS = ['Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36']
 
-#SELENIUM_DRIVER_ARGUMENTS = ['--headless','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36'] #shopee
+#SELENIUM_DRIVER_ARGUMENTS = ['--headless','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36'] #  shopee
 
 BOT_NAME = 'compasscraper'
 
