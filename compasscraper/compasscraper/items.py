@@ -9,6 +9,10 @@ import scrapy
 
 
 class CompasscraperItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    nama = scrapy.Field()
+    brand = scrapy.Field()
+    kategori = scrapy.Field()
+    penjual = scrapy.Field()
+    harga = scrapy.Field()
+    stock = scrapy.Field()
+    url = scrapy.Field()
