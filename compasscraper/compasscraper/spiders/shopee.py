@@ -1,8 +1,7 @@
 from datetime import datetime
 from scrapy_selenium import SeleniumRequest
-from scrapy import Spider
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
+
+from compasscraper.items import ShopeeItem
 
 from scrapy.spiders import CrawlSpider
 
@@ -17,14 +16,30 @@ class ShopeeSpider(CrawlSpider):
     }
 
     def start_requests(self):
+        # todo add expected condition to make sure all page loaded completely
         for url in self.start_urls:
-            yield SeleniumRequest(url=url,
-                          callback=self.parse_product,
-                          wait_time=3,
-                          )
+            yield SeleniumRequest(
+                url=url,
+                callback=self.parse_product,
+                wait_time=6
+            )
 
     def parse_product(self, response):
-        print(response.url)
+        item = ShopeeItem()
+        all_product = response.css(
+            'div[class="shop-search-result-view__item col-xs-2-4"]'
+        )
+        for product in all_product:
+            nama = product.css('div[class="_3Gla5X _2j2K92 _3j20V6"] ::text').extract_first()
+            harga = product.css('span[class="_3TJGx5"] ::text').extract_first()
+            alamat = product.css('div[class="_1IbMik"] ::text').extract_first()
+            terjual = product.css('div[class="_2Tc7Qg _2R-Crv"] ::text').extract_first()
+            item['nama'] = nama
+            item['harga'] = harga
+            item['alamat'] = alamat
+            item['terjual'] = terjual
+            item['url'] = ''
+            yield item
 
 
 

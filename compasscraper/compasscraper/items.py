@@ -16,3 +16,11 @@ class CompasscraperItem(scrapy.Item):
     harga = scrapy.Field()
     stock = scrapy.Field()
     url = scrapy.Field()
+
+
+class ShopeeItem(scrapy.Item):
+    nama = scrapy.Field()
+    harga = scrapy.Field()
+    terjual = scrapy.Field()
+    alamat = scrapy.Field()
+    url = scrapy.Field()
